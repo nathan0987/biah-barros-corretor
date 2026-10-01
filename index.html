@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biah Barros | Corretora de Imóveis em Unamar - Cabo Frio RJ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        beige: {
+                            50: '#FBF9F5',
+                            100: '#F2EDE1',
+                            200: '#E5DCB8',
+                        },
+                        sage: {
+                            600: '#4A6B5D',
+                            700: '#3A544A',
+                            800: '#2C3E37',
+                        },
+                        gold: {
+                            500: '#C5A059',
+                            600: '#B08D46',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FBF9F5;
+            color: #2C3531;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-beige-50 text-sage-800 antialiased selection:bg-gold-500 selection:text-white">
+
+    <div class="bg-sage-800 text-beige-100 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4">
+                <span><i class="fa-solid fa-location-dot text-gold-500 mr-1"></i> Unamar - Cabo Frio, RJ</span>
+                <span><i class="fa-solid fa-id-card text-gold-500 mr-1"></i> CRECI-RJ: 97.387</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/5522997554735" target="_blank" class="hover:text-gold-500 transition"><i class="fa-brands fa-whatsapp text-gold-500 mr-1"></i> (22) 99755-4735</a>
+                <a href="mailto:Corretorabiahbarros@gmail.com" class="hover:text-gold-500 transition"><i class="fa-solid fa-envelope text-gold-500 mr-1"></i> Corretorabiahbarros@gmail.com</a>
+                <div id="auth-status" class="ml-2 font-semibold text-gold-500 cursor-pointer" onclick="openAuthModal()">
+                    <i class="fa-solid fa-user-circle mr-1"></i> Entrar / Conta
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-beige-50/90 backdrop-blur-md border-b border-beige-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <img src="logo.jpg" alt="Biah Barros Logo" class="h-12 w-auto object-contain">
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#inicio" class="hover:text-gold-600 transition">Início</a>
+                <a href="#imoveis" class="hover:text-gold-600 transition">Imóveis & Terrenos</a>
+                <a href="#sobre" class="hover:text-gold-600 transition">Sobre Mim</a>
+                <a href="#busca" class="hover:text-gold-600 transition">Filtro Rápido</a>
+                <a href="#contato" class="hover:text-gold-600 transition">Contato</a>
+                <div id="admin-menu-btn" class="hidden">
+                    <button onclick="openAdminModal()" class="bg-sage-600 text-white px-3 py-1.5 rounded-md text-xs font-bold hover:bg-sage-700 transition shadow">
+                        <i class="fa-solid fa-gear mr-1"></i> Painel Admin
+                    </button>
+                </div>
+                <div id="client-menu-btn" class="hidden">
+                    <button onclick="openClientProfile()" class="bg-gold-500 text-white px-3 py-1.5 rounded-md text-xs font-bold hover:bg-gold-600 transition shadow">
+                        <i class="fa-solid fa-heart mr-1"></i> Meus Favoritos <span id="fav-count" class="bg-white text-gold-600 rounded-full px-1.5 py-0.2 text-[10px] ml-1">0</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="hidden lg:flex items-center">
+                <a href="https://wa.me/5522997554735?text=Olá%20Biah,%20vim%20pelo%20site%20e%20gostaria%20de%20atendimento!" target="_blank" class="bg-sage-600 hover:bg-sage-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 shadow-md transition transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-lg text-gold-500"></i> Falar no WhatsApp
+                </a>
+            </div>
+
+            <button onclick="toggleMobileMenu()" class="md:hidden text-sage-800 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-beige-100 border-b border-beige-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block text-sage-800 font-medium py-1">Início</a>
+            <a href="#imoveis" class="block text-sage-800 font-medium py-1">Imóveis & Terrenos</a>
+            <a href="#sobre" class="block text-sage-800 font-medium py-1">Sobre Mim</a>
+            <a href="#busca" class="block text-sage-800 font-medium py-1">Filtro Rápido</a>
+            <a href="#contato" class="block text-sage-800 font-medium py-1">Contato</a>
+            <div id="mobile-auth-container" class="pt-2 border-t border-beige-200">
+                <button onclick="openAuthModal()" class="w-full text-left text-sage-800 font-semibold py-1"><i class="fa-solid fa-user text-gold-500 mr-2"></i> Entrar / Criar Conta</button>
+            </div>
+            <a href="https://wa.me/5522997554735?text=Olá%20Biah,%20vim%20pelo%20site!" target="_blank" class="w-full bg-sage-600 text-white py-2 rounded-lg text-center font-semibold block mt-2">
+                <i class="fa-brands fa-whatsapp mr-2 text-gold-500"></i> WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative bg-gradient-to-br from-beige-100 via-beige-50 to-sage-800/10 py-20 lg:py-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <span class="inline-block bg-gold-500/10 text-gold-600 border border-gold-500/30 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full">
+                    Sua conquista imobiliária em Unamar & Região
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-sage-800 leading-tight">
+                    Encontre o seu lar, terreno ou investimento ideal com <span class="text-gold-600 italic">segurança</span>.
+                </h1>
+                <p class="text-lg text-sage-700 max-w-2xl mx-auto lg:mx-0 font-light">
+                    Trabalhamos com uma ampla variedade de imóveis e terrenos que cabem no seu orçamento, variando de R$ 10 mil a R$ 2 milhões. Atendimento personalizado, honestidade e dedicação exclusiva para realizar o seu sonho.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="https://wa.me/5522997554735?text=Olá%20Biah,%20quero%20encontrar%20um%20imóvel%20ou%20terreno!" target="_blank" class="w-full sm:w-auto bg-sage-600 hover:bg-sage-700 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition flex items-center justify-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-2xl text-gold-500"></i> Falar com a Biah no WhatsApp
+                    </a>
+                    <a href="#imoveis" class="w-full sm:w-auto border border-sage-600/30 hover:border-sage-600 text-sage-800 px-6 py-4 rounded-xl font-semibold transition text-center">
+                        Ver Imóveis & Terrenos
+                    </a>
+                </div>
+                <div class="pt-6 flex items-center justify-center lg:justify-start gap-8 text-xs text-sage-700">
+                    <div><strong class="text-sage-800 text-base font-serif">CRECI 97.387</strong><br>Profissional Credenciada</div>
+                    <div class="w-px h-8 bg-beige-200"></div>
+                    <div><strong class="text-sage-800 text-base font-serif">R$ 10k - 2M</strong><br>Variedade de Opções</div>
+                    <div class="w-px h-8 bg-beige-200"></div>
+                    <div><strong class="text-sage-800 text-base font-serif">Cabo Frio - RJ</strong><br>Especialista em Unamar</div>
+                </div>
+            </div>
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md lg:max-w-none">
+                    <div class="absolute -inset-4 bg-gold-500/20 rounded-3xl transform rotate-3 filter blur-sm"></div>
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-sage-800 aspect-[4/5]">
+                        <img src="foto.jpg" alt="Biah Barros Corretora" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sage-800/90 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                            <h3 class="font-serif text-xl font-bold">Biah Barros</h3>
+                            <p class="text-xs text-gold-400">Corretora e Avaliadora de Imóveis & Terrenos</p>
+                            <p class="text-[11px] mt-1 text-beige-100">📍 Unamar - Cabo Frio RJ | CRECI-RJ 97.387</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="busca" class="py-16 bg-white border-y border-beige-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-gold-600 text-xs font-bold uppercase tracking-widest">Encontre exatamente o que precisa</span>
+                <h2 class="text-3xl font-serif font-bold text-sage-800 mt-1">O que você está procurando hoje?</h2>
+                <p class="text-sage-700 text-sm mt-2">Selecione seu objetivo abaixo e filtre nossas oportunidades instantaneamente.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                <button onclick="setGoal('Comprar Casa Própria / Imóvel')" id="goal-btn-0" class="goal-tab p-4 rounded-xl border-2 border-gold-500 bg-gold-500/10 text-sage-800 font-semibold text-sm transition text-center flex flex-col items-center gap-2">
+                    <i class="fa-solid fa-house-chimney text-gold-600 text-xl"></i> Comprar Imóvel
+                </button>
+                <button onclick="setGoal('Comprar Terreno')" id="goal-btn-1" class="goal-tab p-4 rounded-xl border-2 border-beige-200 bg-beige-50 text-sage-700 font-semibold text-sm transition text-center flex flex-col items-center gap-2 hover:border-gold-500">
+                    <i class="fa-solid fa-map text-gold-600 text-xl"></i> Comprar Terreno
+                </button>
+                <button onclick="setGoal('Alugar Imóvel')" id="goal-btn-2" class="goal-tab p-4 rounded-xl border-2 border-beige-200 bg-beige-50 text-sage-700 font-semibold text-sm transition text-center flex flex-col items-center gap-2 hover:border-gold-500">
+                    <i class="fa-solid fa-key text-gold-600 text-xl"></i> Alugar Imóvel
+                </button>
+                <button onclick="setGoal('Colocar Imóvel à Venda / Avaliação')" id="goal-btn-3" class="goal-tab p-4 rounded-xl border-2 border-beige-200 bg-beige-50 text-sage-700 font-semibold text-sm transition text-center flex flex-col items-center gap-2 hover:border-gold-500">
+                    <i class="fa-solid fa-handshake text-gold-600 text-xl"></i> Vender / Avaliar
+                </button>
+            </div>
+
+            <div class="bg-beige-50 p-6 sm:p-8 rounded-2xl border border-beige-200 shadow-sm grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-sage-700 mb-2">Tipo de Imóvel</label>
+                    <select id="filter-type" class="w-full bg-white border border-beige-200 rounded-xl px-4 py-3 text-sm text-sage-800 focus:outline-none focus:border-gold-500">
+                        <option value="all">Todos os Tipos</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Terreno">Terreno / Lote</option>
+                        <option value="Apartamento">Apartamento</option>
+                        <option value="Comercial">Comercial</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-sage-700 mb-2">Faixa de Preço</label>
+                    <select id="filter-price" class="w-full bg-white border border-beige-200 rounded-xl px-4 py-3 text-sm text-sage-800 focus:outline-none focus:border-gold-500">
+                        <option value="all">Qualquer Valor (Até R$ 2M)</option>
+                        <option value="50000">Até R$ 50.000 (Ideal para Terrenos)</option>
+                        <option value="150000">R$ 50.000 a R$ 150.000</option>
+                        <option value="350000">R$ 150.000 a R$ 350.000</option>
+                        <option value="1000000">Acima de R$ 350.000</option>
+                    </select>
+                </div>
+                <div>
+                    <button onclick="applyQuickFilter()" class="w-full bg-sage-600 hover:bg-sage-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-gold-500 text-lg"></i> Falar com a Biah no WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-20 bg-beige-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5">
+                    <div class="relative">
+                        <div class="absolute -inset-2 bg-sage-600/20 rounded-2xl transform -rotate-2"></div>
+                        <img src="foto.jpg" alt="Biah Barros Corretora" class="relative rounded-xl shadow-lg w-full object-cover aspect-[4/5]">
+                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-md border border-beige-200">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-gold-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">
+                                    <i class="fa-solid fa-award"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-serif font-bold text-sage-800 text-sm">Biah Barros</h4>
+                                    <p class="text-xs text-sage-700">CRECI-RJ: 97.387 • Unamar, Cabo Frio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="text-gold-600 text-xs font-bold uppercase tracking-widest">Sobre a Corretora</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-sage-800">
+                        Dedicação e honestidade para encontrar o seu lugar ao sol.
+                    </h2>
+                    <p class="text-sage-700 leading-relaxed font-light">
+                        Olá! Sou <strong>Biah Barros</strong>, corretora de imóveis especialista na Região dos Lagos, com foco principal em <strong>Unamar (Cabo Frio - RJ)</strong> e arredores. Acredito que todo cliente merece um atendimento transparente, humanizado e focado em suas reais necessidades e possibilidades financeiras.
+                    </p>
+                    <p class="text-sage-700 leading-relaxed font-light">
+                        Trabalho com uma ampla diversidade de opções que cabem no seu orçamento — desde <strong>terrenos exclusivos</strong> e aconchegantes casas próprias até investimentos estratégicos na região, com valores que iniciam a partir de R$ 10.000 e vão até R$ 2.000.000. Meu compromisso é caminhar junto com você em cada etapa da negociação até a entrega das chaves ou da escritura.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="bg-white p-4 rounded-xl border border-beige-200 shadow-sm text-center">
+                            <i class="fa-solid fa-map-location-dot text-gold-600 text-xl mb-2"></i>
+                            <h5 class="font-bold text-sage-800 text-sm">Casas & Terrenos</h5>
+                            <p class="text-xs text-sage-600 mt-1">Variedade completa</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-beige-200 shadow-sm text-center">
+                            <i class="fa-solid fa-shield-halved text-gold-600 text-xl mb-2"></i>
+                            <h5 class="font-bold text-sage-800 text-sm">Segurança</h5>
+                            <p class="text-xs text-sage-600 mt-1">CRECI 97.387</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-beige-200 shadow-sm text-center col-span-2 sm:col-span-1">
+                            <i class="fa-solid fa-handshake-angle text-gold-600 text-xl mb-2"></i>
+                            <h5 class="font-bold text-sage-800 text-sm">Suporte Total</h5>
+                            <p class="text-xs text-sage-600 mt-1">Do início ao fim</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="imoveis" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="text-gold-600 text-xs font-bold uppercase tracking-widest">Oportunidades Disponíveis</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-sage-800 mt-1">Imóveis & Terrenos em Destaque</h2>
+                    <p class="text-sage-700 text-sm mt-2">Conheça nossas opções analisadas e precificadas de R$ 10k a R$ 2M.</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex gap-2">
+                    <button onclick="filterProperties('all')" class="filter-cat-btn bg-sage-600 text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Todos</button>
+                    <button onclick="filterProperties('Casa')" class="filter-cat-btn bg-beige-100 text-sage-800 px-4 py-2 rounded-lg text-xs font-semibold hover:bg-beige-200 transition">Casas</button>
+                    <button onclick="filterProperties('Terreno')" class="filter-cat-btn bg-beige-100 text-sage-800 px-4 py-2 rounded-lg text-xs font-semibold hover:bg-beige-200 transition">Terrenos</button>
+                </div>
+            </div>
+
+            <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <footer id="contato" class="bg-sage-800 text-beige-100 pt-16 pb-12 border-t border-sage-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <img src="logo.jpg" alt="Biah Barros Logo" class="h-10 w-auto object-contain bg-white/10 p-1 rounded">
+                </div>
+                <p class="text-xs text-beige-200 leading-relaxed">
+                    Corretora de Imóveis especializada em encontrar lares, terrenos e investimentos seguros em Unamar e toda a região de Cabo Frio - RJ. Atendimento personalizado e sério.
+                </p>
+                <p class="text-xs text-gold-400 font-semibold">CRECI-RJ: 97.387</p>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="font-serif font-bold text-lg text-white border-b border-sage-700 pb-2">Canais de Contato</h4>
+                <ul class="space-y-3 text-xs">
+                    <li>
+                        <a href="https://wa.me/5522997554735?text=Olá%20Biah,%20gostaria%20de%20mais%20informações!" target="_blank" class="flex items-center gap-3 hover:text-gold-400 transition bg-sage-700/50 p-2.5 rounded-lg border border-sage-700">
+                            <i class="fa-brands fa-whatsapp text-gold-500 text-lg"></i>
+                            <div>
+                                <span class="block text-[10px] text-beige-200">WhatsApp Direto</span>
+                                <span class="font-semibold text-white">(22) 99755-4735</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:Corretorabiahbarros@gmail.com" class="flex items-center gap-3 hover:text-gold-400 transition p-2.5 rounded-lg bg-sage-700/50 border border-sage-700">
+                            <i class="fa-solid fa-envelope text-gold-500 text-lg"></i>
+                            <div>
+                                <span class="block text-[10px] text-beige-200">E-mail Profissional</span>
+                                <span class="font-semibold text-white">Corretorabiahbarros@gmail.com</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3 p-2.5 rounded-lg bg-sage-700/50 border border-sage-700">
+                        <i class="fa-solid fa-location-dot text-gold-500 text-lg"></i>
+                        <div>
+                            <span class="block text-[10px] text-beige-200">Localização</span>
+                            <span class="font-semibold text-white">Unamar - Cabo Frio RJ</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="font-serif font-bold text-lg text-white border-b border-sage-700 pb-2">Redes Sociais</h4>
+                <p class="text-xs text-beige-200">Siga para ver vídeos de novos imóveis e terrenos:</p>
+                <div class="flex flex-col gap-2 text-xs">
+                    <a href="https://instagram.com/corretorabiahbarros" target="_blank" class="flex items-center gap-2 hover:text-gold-400 transition bg-sage-700/30 p-2 rounded">
+                        <i class="fa-brands fa-instagram text-gold-500"></i> instagram.com/corretorabiahbarros
+                    </a>
+                    <a href="https://facebook.com/profile.php?id=61560522832267" target="_blank" class="flex items-center gap-2 hover:text-gold-400 transition bg-sage-700/30 p-2 rounded">
+                        <i class="fa-brands fa-facebook text-gold-500"></i> Facebook Oficial
+                    </a>
+                    <a href="https://tiktok.com/@corretorabiahbarros" target="_blank" class="flex items-center gap-2 hover:text-gold-400 transition bg-sage-700/30 p-2 rounded">
+                        <i class="fa-brands fa-tiktok text-gold-500"></i> tiktok.com/@corretorabiahbarros
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 pt-8 border-t border-sage-700 text-center text-xs text-beige-200 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Biah Barros • CRECI-RJ 97.387. Todos os direitos reservados.</p>
+            <p class="text-[11px] text-gold-400">Desenvolvido com excelência para o mercado imobiliário.</p>
+        </div>
+    </footer>
+
+    <div id="auth-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-beige-200 relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-sage-700 hover:text-sage-800 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-6">
+                <img src="logo.jpg" alt="Biah Barros Logo" class="h-10 mx-auto mb-2 object-contain">
+                <h3 class="font-serif font-bold text-2xl text-sage-800">Acessar Conta</h3>
+                <p class="text-xs text-sage-600 mt-1">Entre como Corretora (Admin) ou crie sua conta de Cliente.</p>
+            </div>
+
+            <div class="flex border-b border-beige-200 mb-6 text-sm">
+                <button onclick="switchAuthTab('login')" id="tab-login" class="flex-1 pb-2 border-b-2 border-sage-600 font-semibold text-sage-800 text-center">Entrar</button>
+                <button onclick="switchAuthTab('register')" id="tab-register" class="flex-1 pb-2 border-b-2 border-transparent text-sage-600 text-center">Criar Conta Cliente</button>
+            </div>
+
+            <form id="form-login" onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-sage-700 mb-1">Usuário ou E-mail</label>
+                    <input type="text" id="login-user" required placeholder="Ex: biahbarros ou seu e-mail" class="w-full bg-beige-50 border border-beige-200 rounded-xl px-4 py-2.5 text-sm text-sage-800 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-sage-700 mb-1">Senha</label>
+                    <input type="password" id="login-pass" required placeholder="Sua senha" class="w-full bg-beige-50 border border-beige-200 rounded-xl px-4 py-2.5 text-sm text-sage-800 focus:outline-none focus:border-gold-500">
+                </div>
+                <button type="submit" class="w-full bg-sage-600 hover:bg-sage-700 text-white font-semibold py-3 rounded-xl shadow transition">Entrar no Sistema</button>
+                <p class="text-[11px] text-center text-sage-600 mt-2">Dica: Admin oficial use usuário <code class="bg-beige-100 px-1 rounded text-gold-600 font-bold">biahbarros</code> e senha <code class="bg-beige-100 px-1 rounded text-gold-600 font-bold">235689bia</code></p>
+            </form>
+
+            <form id="form-register" onsubmit="handleRegister(event)" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-sage-700 mb-1">Seu Nome</label>
+                    <input type="text" id="reg-name" required placeholder="Nome completo" class="w-full bg-beige-50 border border-beige-200 rounded-xl px-4 py-2.5 text-sm text-sage-800 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-sage-700 mb-1">E-mail</label>
+                    <input type="email" id="reg-email" required placeholder="seu@email.com" class="w-full bg-beige-50 border border-beige-200 rounded-xl px-4 py-2.5 text-sm text-sage-800 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-sage-700 mb-1">Senha</label>
+                    <input type="password" id="reg-pass" required placeholder="Crie uma senha" class="w-full bg-beige-50 border border-beige-200 rounded-xl px-4 py-2.5 text-sm text-sage-800 focus:outline-none focus:border-gold-500">
+                </div>
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-white font-semibold py-3 rounded-xl shadow transition">Criar Conta de Cliente</button>
+                <p class="text-[10px] text-center text-sage-600">Contas de clientes permitem salvar imóveis de interesse com alertas automáticos caso sejam vendidos.</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-beige-200 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-sage-700 hover:text-sage-800 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-6">
+                <span class="text-xs font-bold text-gold-600 uppercase">Área Exclusiva da Corretora</span>
+                <h3 class="font-serif font-bold text-2xl text-sage-800">Painel Administrativo - Biah Barros</h3>
+                <p class="text-xs text-sage-600 mt-1">Adicione novos imóveis ou terrenos, edite descrições e gerencie o status de venda (R$ 10k a R$ 2M).</p>
+            </div>
+
+            <form onsubmit="handleAddProperty(event)" class="space-y-4 bg-beige-50 p-4 rounded-xl border border-beige-200 mb-6">
+                <h4 class="font-serif font-bold text-sage-800 text-sm border-b pb-2">Cadastrar Novo Imóvel ou Terreno</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase text-sage-700 mb-1">Título do Anúncio</label>
+                        <input type="text" id="prop-title" required placeholder="Ex: Terreno em Unamar / Casa 2 Quartos" class="w-full bg-white border border-beige-200 rounded-lg px-3 py-2 text-xs text-sage-800">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase text-sage-700 mb-1">Tipo</label>
+                        <select id="prop-type" class="w-full bg-white border border-beige-200 rounded-lg px-3 py-2 text-xs text-sage-800">
+                            <option value="Casa">Casa</option>
+                            <option value="Terreno">Terreno / Lote</option>
+                            <option value="Apartamento">Apartamento</option>
+                            <option value="Comercial">Comercial</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase text-sage-700 mb-1">Preço (R$ 10k - 2M)</label>
+                        <input type="number" id="prop-price" min="10000" max="2000000" required placeholder="Ex: 85000" class="w-full bg-white border border-beige-200 rounded-lg px-3 py-2 text-xs text-sage-800">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase text-sage-700 mb-1">Localização</label>
+                        <input type="text" id="prop-loc" required placeholder="Ex: Unamar, Cabo Frio - RJ" value="Unamar, Cabo Frio - RJ" class="w-full bg-white border border-beige-200 rounded-lg px-3 py-2 text-xs text-sage-800">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase text-sage-700 mb-1">Quartos (0 se terreno)</label>
+                        <input type="number" id="prop-beds" min="0" value="0" class="w-full bg-white border border-beige-200 rounded-lg px-3 py-2 text-xs text-sage-800">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase text-sage-700 mb-1">Banheiros</label>
+                        <input type="number" id="prop-baths" min="0" value="0" class="w-full bg-white border border-beige-200 rounded-lg px-3 py-2 text-xs text-sage-800">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase text-sage-700 mb-1">URL da Foto</label>
+                    <input type="url" id="prop-img" required placeholder="https://images.unsplash.com/..." class="w-full bg-white border border-beige-200 rounded-lg px-3 py-2 text-xs text-sage-800">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase text-sage-700 mb-1">Descrição Completa</label>
+                    <textarea id="prop-desc" rows="2" required placeholder="Detalhes do imóvel ou terreno..." class="w-full bg-white border border-beige-200 rounded-lg px-3 py-2 text-xs text-sage-800"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-sage-600 hover:bg-sage-700 text-white font-semibold py-2.5 rounded-lg text-xs shadow">Salvar e Publicar Anúncio</button>
+            </form>
+
+            <h4 class="font-serif font-bold text-sage-800 text-sm mb-3">Imóveis Atuais Cadastrados</h4>
+            <div id="admin-prop-list" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <div id="client-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-beige-200 relative max-h-[85vh] overflow-y-auto">
+            <button onclick="closeClientProfile()" class="absolute top-4 right-4 text-sage-700 hover:text-sage-800 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-beige-200">
+                <div class="w-12 h-12 rounded-full bg-gold-500 text-white flex items-center justify-center font-bold text-lg">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div>
+                    <h3 id="client-name-display" class="font-serif font-bold text-xl text-sage-800">Cliente</h3>
+                    <p class="text-xs text-sage-600">Área de Imóveis Salvos e Interesses</p>
+                </div>
+            </div>
+
+            <h4 class="font-serif font-bold text-sage-800 text-sm mb-3"><i class="fa-solid fa-heart text-gold-500 mr-1"></i> Seus Imóveis Favoritos</h4>
+            <div id="client-fav-list" class="space-y-3"></div>
+
+            <div class="mt-6 pt-4 border-t border-beige-200 flex justify-between items-center">
+                <button onclick="logout()" class="text-red-600 text-xs font-semibold hover:underline"><i class="fa-solid fa-right-from-bracket mr-1"></i> Sair da Conta</button>
+                <button onclick="closeClientProfile()" class="bg-sage-600 text-white px-4 py-2 rounded-xl text-xs font-semibold">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const defaultProperties = [
+            {
+                id: 1,
+                title: "Terreno Plano em Unamar - Oportunidade",
+                type: "Terreno",
+                price: 45000,
+                location: "Unamar, Cabo Frio - RJ",
+                beds: 0,
+                baths: 0,
+                image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
+                description: "Excelente terreno plano com 300m², pronto para construir, localizado em rua tranquila de Unamar. Documentação ok.",
+                status: "Disponível"
+            },
+            {
+                id: 2,
+                title: "Casa Acolhedora 2 Quartos perto da Praia",
+                type: "Casa",
+                price: 165000,
+                location: "Unamar (Tamoios), Cabo Frio - RJ",
+                beds: 2,
+                baths: 1,
+                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
+                description: "Casa charmosa, quintal espaçoso, próxima ao comércio local e praias da região. Ótima oportunidade de moradia própria.",
+                status: "Disponível"
+            },
+            {
+                id: 3,
+                title: "Lote Comercial Estratégico",
+                type: "Terreno",
+                price: 120000,
+                location: "Unamar - Rodovia Amaral Peixoto",
+                beds: 0,
+                baths: 0,
+                image: "https://images.unsplash.com/photo-1524813686514-a57563d77840?auto=format&fit=crop&w=800&q=80",
+                description: "Lote comercial com excelente visibilidade na principal via da região. Ideal para montar seu negócio ou galpão.",
+                status: "Disponível"
+            },
+            {
+                id: 4,
+                title: "Casa Família com Piscina e Churrasqueira",
+                type: "Casa",
+                price: 320000,
+                location: "Unamar, Cabo Frio - RJ",
+                beds: 3,
+                baths: 2,
+                image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+                description: "Linda casa com acabamento impecável, área de lazer privativa com piscina e espaço gourmet completo.",
+                status: "Disponível"
+            },
+            {
+                id: 5,
+                title: "Terreno Próximo à Praia dos Corais",
+                type: "Terreno",
+                price: 75000,
+                location: "Unamar, Cabo Frio - RJ",
+                beds: 0,
+                baths: 0,
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+                description: "Terreno murado, a poucos minutos da praia. Região em constante valorização.",
+                status: "Disponível"
+            },
+            {
+                id: 6,
+                title: "Residência Moderna de 3 Quartos",
+                type: "Casa",
+                price: 480000,
+                location: "Cabo Frio - RJ",
+                beds: 3,
+                baths: 3,
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                description: "Imóvel completo com projeto moderno, iluminação em LED, porcelanato e suíte master.",
+                status: "Disponível"
+            }
+        ];
+
+        let properties = JSON.parse(localStorage.getItem('biah_properties')) || defaultProperties;
+        let currentUser = JSON.parse(localStorage.getItem('biah_current_user')) || null;
+        let favorites = JSON.parse(localStorage.getItem('biah_favorites')) || {};
+        let currentGoal = "Comprar Casa Própria / Imóvel";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProperties();
+            updateAuthUI();
+        });
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function setGoal(goal) {
+            currentGoal = goal;
+            document.querySelectorAll('.goal-tab').forEach((btn) => {
+                if (btn.innerText.includes(goal.split(' ')[0])) {
+                    btn.className = "goal-tab p-4 rounded-xl border-2 border-gold-500 bg-gold-500/10 text-sage-800 font-semibold text-sm transition text-center flex flex-col items-center gap-2";
+                } else {
+                    btn.className = "goal-tab p-4 rounded-xl border-2 border-beige-200 bg-beige-50 text-sage-700 font-semibold text-sm transition text-center flex flex-col items-center gap-2 hover:border-gold-500";
+                }
+            });
+        }
+
+        function applyQuickFilter() {
+            const type = document.getElementById('filter-type').value;
+            const priceMax = document.getElementById('filter-price').value;
+
+            let filtered = properties;
+            if (type !== 'all') {
+                filtered = filtered.filter(p => p.type === type);
+            }
+            if (priceMax !== 'all') {
+                filtered = filtered.filter(p => p.price <= parseInt(priceMax));
+            }
+
+            renderProperties(filtered);
+            document.getElementById('imoveis').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function filterProperties(category) {
+            document.querySelectorAll('.filter-cat-btn').forEach(b => {
+                b.className = "filter-cat-btn bg-beige-100 text-sage-800 px-4 py-2 rounded-lg text-xs font-semibold hover:bg-beige-200 transition";
+            });
+            event.target.className = "filter-cat-btn bg-sage-600 text-white px-4 py-2 rounded-lg text-xs font-semibold transition";
+
+            if (category === 'all') {
+                renderProperties(properties);
+            } else {
+                renderProperties(properties.filter(p => p.type === category));
+            }
+        }
+
+        function renderProperties(list = properties) {
+            const grid = document.getElementById('properties-grid');
+            grid.innerHTML = '';
+
+            if (list.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-sage-600">Nenhum imóvel ou terreno encontrado com estes critérios. Fale com a Biah no WhatsApp para buscar sob medida!</div>`;
+                return;
+            }
+
+            list.forEach(p => {
+                const isFav = currentUser && favorites[currentUser.email] && favorites[currentUser.email].includes(p.id);
+                const isSold = p.status === "Vendido";
+
+                const card = document.createElement('div');
+                card.className = "bg-beige-50 rounded-2xl overflow-hidden border border-beige-200 shadow-sm hover:shadow-md transition flex flex-col relative";
+
+                card.innerHTML = `
+                    <div class="relative aspect-[16/10] overflow-hidden bg-sage-800">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover ${isSold ? 'grayscale opacity-60' : ''}">
+                        <div class="absolute top-3 left-3 bg-sage-600 text-gold-400 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                            ${p.type}
+                        </div>
+                        ${isSold ? '<div class="absolute inset-0 flex items-center justify-center bg-black/50 text-white font-serif font-bold text-xl uppercase tracking-widest">Vendido / Indisponível</div>' : ''}
+                        <button onclick="toggleFavorite(${p.id})" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 flex items-center justify-center text-red-500 hover:bg-white shadow transition">
+                            <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart text-base"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="text-gold-600 font-serif font-bold text-xl mb-1">R$ ${p.price.toLocaleString('pt-BR')}</div>
+                            <h3 class="font-serif font-bold text-sage-800 text-lg leading-snug">${p.title}</h3>
+                            <p class="text-xs text-sage-600 mt-1"><i class="fa-solid fa-location-dot text-gold-500 mr-1"></i> ${p.location}</p>
+                            <p class="text-xs text-sage-700 mt-3 line-clamp-2 font-light">${p.description}</p>
+                        </div>
+                        <div class="pt-4 border-t border-beige-200 flex items-center justify-between">
+                            ${p.type !== 'Terreno' ? `
+                                <div class="flex items-center gap-4 text-xs text-sage-700">
+                                    <span><i class="fa-solid fa-bed text-gold-500 mr-1"></i> ${p.beds} Quartos</span>
+                                    <span><i class="fa-solid fa-bath text-gold-500 mr-1"></i> ${p.baths} Banheiros</span>
+                                </div>
+                            ` : `<div class="text-xs text-gold-600 font-semibold"><i class="fa-solid fa-map mr-1"></i> Terreno Pronto</div>`}
+                            <a href="https://wa.me/5522997554735?text=Olá%20Biah,%20tenho%20interesse%20no%20imóvel/terreno:%20${encodeURIComponent(p.title)}%20(R$%20${p.price.toLocaleString('pt-BR')})" target="_blank" class="bg-sage-600 hover:bg-sage-700 text-white px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow">
+                                <i class="fa-brands fa-whatsapp text-gold-500"></i> Tenho Interesse
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openAuthModal() {
+            document.getElementById('auth-modal').classList.remove('hidden');
+        }
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        function switchAuthTab(tab) {
+            if (tab === 'login') {
+                document.getElementById('form-login').classList.remove('hidden');
+                document.getElementById('form-register').classList.add('hidden');
+                document.getElementById('tab-login').className = "flex-1 pb-2 border-b-2 border-sage-600 font-semibold text-sage-800 text-center";
+                document.getElementById('tab-register').className = "flex-1 pb-2 border-b-2 border-transparent text-sage-600 text-center";
+            } else {
+                document.getElementById('form-login').classList.add('hidden');
+                document.getElementById('form-register').classList.remove('hidden');
+                document.getElementById('tab-register').className = "flex-1 pb-2 border-b-2 border-gold-500 font-semibold text-sage-800 text-center";
+                document.getElementById('tab-login').className = "flex-1 pb-2 border-b-2 border-transparent text-sage-600 text-center";
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('login-user').value.trim();
+            const pass = document.getElementById('login-pass').value.trim();
+
+            if (user === 'biahbarros' && pass === '235689bia') {
+                currentUser = { name: 'Biah Barros (Admin)', email: 'Corretorabiahbarros@gmail.com', isAdmin: true };
+                localStorage.setItem('biah_current_user', JSON.stringify(currentUser));
+                alert('Login de Administrador efetuado com sucesso!');
+                closeAuthModal();
+                updateAuthUI();
+                return;
+            }
+
+            const clients = JSON.parse(localStorage.getItem('biah_clients')) || [];
+            const found = clients.find(c => c.email === user && c.pass === pass);
+            if (found) {
+                currentUser = { name: found.name, email: found.email, isAdmin: false };
+                localStorage.setItem('biah_current_user', JSON.stringify(currentUser));
+                alert(`Bem-vindo(a) de volta, ${found.name}!`);
+                closeAuthModal();
+                updateAuthUI();
+                renderProperties();
+                return;
+            }
+
+            alert('Usuário ou senha incorretos. Para admin use biahbarros / 235689bia');
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
+
+            let clients = JSON.parse(localStorage.getItem('biah_clients')) || [];
+            if (clients.some(c => c.email === email)) {
+                alert('Este e-mail já está cadastrado.');
+                return;
+            }
+
+            clients.push({ name, email, pass });
+            localStorage.setItem('biah_clients', JSON.stringify(clients));
+            currentUser = { name, email, isAdmin: false };
+            localStorage.setItem('biah_current_user', JSON.stringify(currentUser));
+
+            alert('Conta criada com sucesso!');
+            closeAuthModal();
+            updateAuthUI();
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('biah_current_user');
+            updateAuthUI();
+            closeClientProfile();
+            renderProperties();
+            alert('Você saiu da sua conta.');
+        }
+
+        function updateAuthUI() {
+            const authStatus = document.getElementById('auth-status');
+            const adminMenu = document.getElementById('admin-menu-btn');
+            const clientMenu = document.getElementById('client-menu-btn');
+
+            if (currentUser) {
+                authStatus.innerHTML = `<i class="fa-solid fa-user-check text-gold-500 mr-1"></i> ${currentUser.name.split(' ')[0]}`;
+                if (currentUser.isAdmin) {
+                    adminMenu.classList.remove('hidden');
+                    clientMenu.classList.add('hidden');
+                } else {
+                    adminMenu.classList.add('hidden');
+                    clientMenu.classList.remove('hidden');
+                    updateFavCount();
+                }
+            } else {
+                authStatus.innerHTML = `<i class="fa-solid fa-user-circle mr-1"></i> Entrar / Conta`;
+                adminMenu.classList.add('hidden');
+                clientMenu.classList.add('hidden');
+            }
+        }
+
+        function toggleFavorite(propId) {
+            if (!currentUser) {
+                alert('Você precisa entrar em sua conta de cliente para salvar imóveis favoritos.');
+                openAuthModal();
+                return;
+            }
+            if (currentUser.isAdmin) {
+                alert('Administradores não salvam favoritos pessoais.');
+                return;
+            }
+
+            if (!favorites[currentUser.email]) {
+                favorites[currentUser.email] = [];
+            }
+
+            const index = favorites[currentUser.email].indexOf(propId);
+            if (index > -1) {
+                favorites[currentUser.email].splice(index, 1);
+                alert('Imóvel removido dos seus favoritos.');
+            } else {
+                favorites[currentUser.email].push(propId);
+                alert('Imóvel salvo em seus favoritos com sucesso!');
+            }
+
+            localStorage.setItem('biah_favorites', JSON.stringify(favorites));
+            updateFavCount();
+            renderProperties();
+        }
+
+        function updateFavCount() {
+            if (!currentUser || currentUser.isAdmin) return;
+            const favs = favorites[currentUser.email] || [];
+            document.getElementById('fav-count').innerText = favs.length;
+        }
+
+        function openClientProfile() {
+            if (!currentUser) return;
+            document.getElementById('client-name-display').innerText = currentUser.name;
+            const listContainer = document.getElementById('client-fav-list');
+            listContainer.innerHTML = '';
+
+            const favIds = favorites[currentUser.email] || [];
+            if (favIds.length === 0) {
+                listContainer.innerHTML = `<p class="text-xs text-sage-600 text-center py-4">Você ainda não salvou nenhum imóvel ou terreno.</p>`;
+            } else {
+                favIds.forEach(id => {
+                    const prop = properties.find(p => p.id === id);
+                    if (prop) {
+                        const isSold = prop.status === "Vendido";
+                        const item = document.createElement('div');
+                        item.className = `p-3 rounded-xl border ${isSold ? 'bg-red-50 border-red-200' : 'bg-beige-50 border-beige-200'} flex items-center justify-between gap-3`;
+                        item.innerHTML = `
+                            <img src="${prop.image}" class="w-14 h-14 object-cover rounded-lg">
+                            <div class="flex-1">
+                                <h5 class="font-serif font-bold text-xs text-sage-800">${prop.title}</h5>
+                                <p class="text-[11px] text-gold-600 font-semibold">R$ ${prop.price.toLocaleString('pt-BR')}</p>
+                                ${isSold ? '<span class="inline-block mt-1 bg-red-600 text-white text-[9px] font-bold px-2 py-0.5 rounded">⚠️ AVISO: Este imóvel/terreno foi VENDIDO e removido!</span>' : '<span class="text-[10px] text-sage-600">Disponível</span>'}
+                            </div>
+                            <button onclick="toggleFavorite(${prop.id}); openClientProfile();" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button>
+                        `;
+                        listContainer.appendChild(item);
+                    }
+                });
+            }
+
+            document.getElementById('client-modal').classList.remove('hidden');
+        }
+
+        function closeClientProfile() {
+            document.getElementById('client-modal').classList.add('hidden');
+        }
+
+        function openAdminModal() {
+            if (!currentUser || !currentUser.isAdmin) return;
+            renderAdminPropertyList();
+            document.getElementById('admin-modal').classList.remove('hidden');
+        }
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function handleAddProperty(e) {
+            e.preventDefault();
+            const newProp = {
+                id: Date.now(),
+                title: document.getElementById('prop-title').value,
+                type: document.getElementById('prop-type').value,
+                price: parseInt(document.getElementById('prop-price').value),
+                location: document.getElementById('prop-loc').value,
+                beds: parseInt(document.getElementById('prop-beds').value),
+                baths: parseInt(document.getElementById('prop-baths').value),
+                image: document.getElementById('prop-img').value,
+                description: document.getElementById('prop-desc').value,
+                status: "Disponível"
+            };
+
+            properties.unshift(newProp);
+            localStorage.setItem('biah_properties', JSON.stringify(properties));
+            alert('Imóvel / Terreno adicionado com sucesso!');
+            e.target.reset();
+            renderProperties();
+            renderAdminPropertyList();
+        }
+
+        function renderAdminPropertyList() {
+            const list = document.getElementById('admin-prop-list');
+            list.innerHTML = '';
+            properties.forEach(p => {
+                const item = document.createElement('div');
+                item.className = "flex items-center justify-between p-2.5 bg-white rounded-lg border text-xs";
+                item.innerHTML = `
+                    <div>
+                        <strong class="text-sage-800">${p.title}</strong> - <span class="text-gold-600 font-bold">R$ ${p.price.toLocaleString('pt-BR')}</span> (${p.status})
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="togglePropStatus(${p.id})" class="px-2 py-1 bg-sage-600 text-white rounded text-[10px]">${p.status === 'Disponível' ? 'Marcar Vendido' : 'Marcar Disponível'}</button>
+                        <button onclick="deleteProperty(${p.id})" class="px-2 py-1 bg-red-600 text-white rounded text-[10px]"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function togglePropStatus(id) {
+            const p = properties.find(x => x.id === id);
+            if (p) {
+                p.status = p.status === 'Disponível' ? 'Vendido' : 'Disponível';
+                localStorage.setItem('biah_properties', JSON.stringify(properties));
+                renderProperties();
+                renderAdminPropertyList();
+            }
+        }
+
+        function deleteProperty(id) {
+            if (confirm('Deseja excluir este imóvel/terreno?')) {
+                properties = properties.filter(x => x.id !== id);
+                localStorage.setItem('biah_properties', JSON.stringify(properties));
+                renderProperties();
+                renderAdminPropertyList();
+            }
+        }
+    </script>
+</body>
+</html>
